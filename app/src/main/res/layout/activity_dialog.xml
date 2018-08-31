@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="5dp"
+        android:paddingTop="150dp"
+        >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Barcode No"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/disc"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:cursorVisible="true"
+            android:singleLine="true"
+            android:id="@+id/barcodedialog"
+            android:hint="Scan barcode here"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="2dp"
+            android:ems="10"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Qty"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/disc1"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            />
+
+        <EditText
+
+            android:id="@+id/Qtydialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:layout_weight="0.6"
+            android:maxLength="4"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="30px"
+            android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="5dp"
+        android:paddingTop="50dp"
+        >
+
+
+
+        <Button
+
+            android:id="@+id/Exit"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:text="Exit"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:text="Update"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize"
+            android:id="@+id/update"
+
+            />
+
+        <Button
+
+            android:id="@+id/Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:text="Delete"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize"
+            />
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

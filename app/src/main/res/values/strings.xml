@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">PI Process</string>
+
+    <string-array name="stocktype">
+            <item>Please Select</item>
+            <item>MAIN</item>
+            <item>RECOUNT1</item>
+            <item>RECOUNT2</item>
+            <item>SAP-DIFF</item>
+        </string-array>
+
+        <string-array name="areatype">
+            <item>Please Select</item>
+            <item>SALES AREA</item>
+            <item>DC AREA</item>
+        </string-array>
+
+
+        <string-array name="floortype">
+            <item>Please Select</item>
+            <item>-2</item>
+            <item>-1</item>
+            <item>GR</item>
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+            <item>4</item>
+            <item>5</item>
+            <item>other</item>
+        </string-array>
+    </resources>

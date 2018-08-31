@@ -1,0 +1,295 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100.0"
+
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="5dp"
+        android:id="@+id/gandolatext"
+        android:paddingTop="100dp"
+        >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Gandola No"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/disc8"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            />
+
+        <TextView
+
+            android:id="@+id/gandolanotext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:layout_weight="0.6"
+            android:maxLength="4"
+            android:textColor="#000000"
+
+            android:textSize="30px"
+            android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        android:visibility="visible"
+        android:id="@+id/scantextlayout"
+        >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Barcode"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/disc2"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            />
+
+        <TextView
+
+            android:id="@+id/quantitytext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="0.5"
+            android:textColor="#000000"
+            android:text="Qty"
+            android:textStyle="bold"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="100dp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="2dp"
+        android:paddingTop="10dp"
+        android:id="@+id/scanlayout"
+
+        >
+
+
+        <AutoCompleteTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:id="@+id/barcodeno"
+            android:hint="Scan barcode here"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="2dp"
+            android:ems="10"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+            />
+
+        <TextView
+
+            android:id="@+id/qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="number"
+            android:layout_weight="0.3"
+            android:textColor="#000000"
+
+
+            android:textSize="@dimen/textsize"
+            android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="2dp"
+        android:paddingTop="10dp"
+        android:id="@+id/countlayout"
+        >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Total Count"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/disc9"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            />
+
+        <TextView
+
+            android:id="@+id/totalcount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="text"
+            android:layout_weight="0.6"
+            android:textColor="#000000"
+
+            android:textSize="30px"
+            android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+
+            />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:visibility="gone"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Total Qty"
+            android:textStyle="bold"
+
+            android:textColor="#000000"
+            android:id="@+id/disc0"
+            android:textSize="@dimen/textsize"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
+            android:paddingLeft="50dp"
+            />
+
+        <TextView
+
+            android:id="@+id/timetotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="number"
+            android:layout_weight="0.4"
+            android:textColor="#000000"
+
+
+            android:textSize="30px"
+            android:ems="10"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/border_style"
+            android:imeOptions="flagNoExtractUi"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:paddingTop="110dp"
+        android:visibility="visible"
+
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:text="EXIT"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:text="EDIT"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize" />
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.3"
+            android:text="Export Csv"
+            android:textColor="#000000"
+            android:textSize="@dimen/textsize" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
