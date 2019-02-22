@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     String StockSpinValue,AreaSpinValue,FloorSpinvalue,Scan,Physical;
     RadioButton Scanning,Physicalcount;
     RadioGroup radioGroup;
-    Button Exit,Next,Olddata;
+    Button Exit,Next,Olddata,mmmmm;
     DBController dbController;
     ActionBar actionBar;
     String salesarea,dcarea;
