@@ -47,13 +47,12 @@ import java.util.Calendar;
 public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback {
 
 
-    EditText GandolaNo;
+    EditText GandolaNo,Manual;
     AutoCompleteTextView Barcode;
     TextView Totalqty,Timeqty,Qty,totalcount,gandolatextview;
-    Button Exit,Edit,Save,Enter;
-    String Storecode,Stocktype,Areatype,Floortype,userTypedString,Ecode;
-    private TextWatcher barcodetextwatcher,QuantityTextwatcher;
-    public static final String BARCODE_STRING_PREFIX = "@";
+    Button Exit,Edit,Save,Enter,Manualbut;
+    String Storecode,Stocktype,Areatype,Floortype,Ecode;
+
     DBController dbController;
     int count = 1;
     Boolean check;
@@ -83,10 +82,7 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
     private ReaderCallback mReaderCallback = null;
     ArrayList<Gandolamodel>gandola;
     String Gandolacode = null;
-
-
-
-
+    ArrayList<String>  export = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +106,7 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
         scanlayout = (LinearLayout) findViewById(R.id.scanlayout);
         scantextlayout = (LinearLayout)findViewById(R.id.scantextlayout);
         countlayout = (LinearLayout)findViewById(R.id.countlayout);
+        Manualbut = (Button)findViewById(R.id.manualeditbutton);
 
 
 
@@ -137,7 +134,7 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
 
 
 
-        gandola = dbController.getalldatainvoice();
+        gandola = dbController.getallstorevalue();
 
         STORECODE = gandola.get(0).getStoreName();
         Gandolacode = gandola.get(0).getGandolano();
@@ -174,6 +171,13 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
             @Override
             public void onClick(View v) {
 
+                export = dbController.getScanData();
+                if (export.size() == 0)
+                {
+                    Toast.makeText(ScanAfterDialog.this, "No Data to Export", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Savebuttondialog();
 
             }
@@ -186,7 +190,19 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
             }
         });
 
+        Manualbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
 
+                if (Barcode.getText().toString().matches(""))
+                {
+                    Toast.makeText(ScanAfterDialog.this, "Please Add Hu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+               SaveManualBarcodedialog();
+            }
+        });
 
 
 
@@ -197,6 +213,49 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
     public void onBackPressed() {
         Exitbuttondialog();
     }
+
+
+    public void SaveManualBarcodedialog() {
+        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Save!!");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Are you Sure you want to Save Manual Barcode");
+
+        // Setting Icon to Dialog
+        //     alertDialog.setIcon(R.drawable.delete);
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+
+                    databaseoperation(Barcode.getText().toString());
+                    Barcode.setText("");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Write your code here to invoke NO event
+                Barcode.setText("");
+
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
+
+
 
     public void Savebuttondialog() {
         android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(this);
@@ -240,21 +299,8 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
                     Intent intent = new Intent(getApplicationContext(),ScanActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
-//                    GandolaNo.setText("");
-//                    totalcount.setText("");
-//                    gandolatextview.setText("");
-//                    gandolaedit.setVisibility(View.VISIBLE);
-//                    gandolatext.setVisibility(View.INVISIBLE);
-//                    countlayout.setVisibility(View.INVISIBLE);
-//                    scanlayout.setVisibility(View.INVISIBLE);
-//                    scantextlayout.setVisibility(View.INVISIBLE);
 
-
-
-
-
-
-                } catch (Exception e) {
+                    } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -441,7 +487,10 @@ public class ScanAfterDialog extends AppCompatActivity implements ReaderCallback
         dbController =  new DBController(this);
         SQLiteDatabase db = dbController.getWritableDatabase();
         String tableName = "retail_physical_scanning";
+        String tableName1 = "retail_store";
+
         db.execSQL("delete from " + tableName);
+        db.execSQL("delete from " + tableName1);
         Log.e("Data","Deleted");
         //  db.execSQL("delete from " + tableName2);
 

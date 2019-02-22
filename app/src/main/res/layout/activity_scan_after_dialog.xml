@@ -160,6 +160,37 @@
             />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="2dp"
+        android:paddingTop="10dp"
+        android:visibility="visible"
+        >
+
+
+
+
+        <Button
+
+            android:id="@+id/manualeditbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+
+            android:layout_weight="0.4"
+            android:textColor="#000000"
+            android:text="Enter"
+
+            android:textSize="30px"
+            android:layout_gravity="center_vertical"
+
+            />
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -205,6 +236,7 @@
 
             />
     </LinearLayout>
+
 
 
 
@@ -260,7 +292,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
-        android:paddingTop="110dp"
+        android:paddingTop="70dp"
         android:visibility="visible"
 
         android:orientation="horizontal">

@@ -305,7 +305,10 @@ String userTypedString;
         dbController =  new DBController(this);
         SQLiteDatabase db = dbController.getWritableDatabase();
         String tableName = "retail_physical_scanning";
+        String tableName1 = "retail_store";
+
         db.execSQL("delete from " + tableName);
+        db.execSQL("delete from " + tableName1);
         Log.e("Data","Deleted");
         //  db.execSQL("delete from " + tableName2);
 
@@ -427,6 +430,8 @@ String userTypedString;
                     }
                     totalcount.setText("");
                     Barcode.setText("");
+
+
 
 
 

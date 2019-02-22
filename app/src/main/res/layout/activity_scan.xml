@@ -216,6 +216,41 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1.0"
+        android:paddingRight="2dp"
+        android:paddingTop="10dp"
+        android:visibility="invisible"
+        android:id="@+id/Manualeditbuttonlayout"
+        >
+
+
+
+
+        <Button
+
+            android:id="@+id/manualeditbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+
+            android:layout_weight="0.4"
+            android:textColor="#000000"
+            android:text="Enter"
+
+            android:textSize="30px"
+            android:layout_gravity="center_vertical"
+
+            />
+    </LinearLayout>
+
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -260,6 +295,7 @@
 
             />
     </LinearLayout>
+
 
 
 
@@ -311,7 +347,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"

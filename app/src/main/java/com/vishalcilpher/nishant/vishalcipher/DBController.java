@@ -31,6 +31,8 @@ public class DBController extends SQLiteOpenHelper {
      database.execSQL(query);
      query = "CREATE TABLE IF NOT EXISTS retail_physical_count (SITE_CODE TEXT,STOCK_TYPE TEXT,ECODE INTEGER,AREA_TYPE TEXT,FLOOR TEXT,GANDOLA_NO TEXT PRIMARY KEY,QTY TEXT,START_DATE TEXT ,START_TIME TEXT,END_DATE TEXT,END_TIME TEXT)";
      database.execSQL(query);
+     query = "CREATE TABLE IF NOT EXISTS retail_store (SITE_CODE TEXT,STOCK_TYPE TEXT,ECODE INTEGER,AREA_TYPE TEXT,FLOOR TEXT,GANDOLA_NO TEXT PRIMARY KEY,QTY TEXT,START_DATE TEXT ,START_TIME TEXT,END_DATE TEXT,END_TIME TEXT)";
+     database.execSQL(query);
      Log.e("@@@@@@@@",query);
  }
 
@@ -66,6 +68,24 @@ public class DBController extends SQLiteOpenHelper {
         db.insert("retail_physical_scanning", null, contentValues);
 
         Log.e("############","physicalentryinserted");
+
+    }
+
+    public void Insertstorevalue(String Storename, String stock, String ecode, String area, String floor, String gandolano)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("SITE_CODE", Storename);
+        contentValues.put("STOCK_TYPE ",stock);
+        contentValues.put("ECODE",ecode);
+        contentValues.put("AREA_TYPE", area);
+        contentValues.put("FLOOR", floor);
+        contentValues.put("GANDOLA_NO", gandolano);
+
+
+        db.insert("retail_store", null, contentValues);
+
+        Log.e("############","storevalueinserted");
 
     }
 
@@ -268,6 +288,35 @@ public void Insertphysicalcountentry(String Storename, String stock, String ecod
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery("select DISTINCT GANDOLA_NO,SITE_CODE,STOCK_TYPE,AREA_TYPE,ECODE,FLOOR from retail_physical_scanning", null);
+            if (cursor.moveToFirst()) {
+                do {
+                    Gandolamodel gandolamodel=new Gandolamodel();
+                    gandolamodel.setStoreName(cursor.getString(cursor.getColumnIndex("SITE_CODE")));
+                    gandolamodel.setStocktype(cursor.getString(cursor.getColumnIndex("STOCK_TYPE")));
+                    gandolamodel.setAreatype(cursor.getString(cursor.getColumnIndex("AREA_TYPE")));
+                    gandolamodel.setEcode(cursor.getString(cursor.getColumnIndex("ECODE")));
+                    gandolamodel.setFloor(cursor.getString(cursor.getColumnIndex("FLOOR")));
+                    gandolamodel.setGandolano(cursor.getString(cursor.getColumnIndex("GANDOLA_NO")));
+
+                    invoicenolist.add(gandolamodel);
+                } while (cursor.moveToNext());
+
+            }
+
+
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+
+        return invoicenolist;
+    }
+
+    public ArrayList<Gandolamodel> getallstorevalue() {
+        ArrayList<Gandolamodel> invoicenolist = new ArrayList<Gandolamodel>();
+
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("select DISTINCT GANDOLA_NO,SITE_CODE,STOCK_TYPE,AREA_TYPE,ECODE,FLOOR from retail_store", null);
             if (cursor.moveToFirst()) {
                 do {
                     Gandolamodel gandolamodel=new Gandolamodel();

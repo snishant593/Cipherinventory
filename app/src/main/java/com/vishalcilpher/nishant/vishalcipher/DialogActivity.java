@@ -47,12 +47,8 @@ public class DialogActivity extends Activity implements ReaderCallback {
     private ReaderCallback mReaderCallback = null;
     ArrayList<String> duplicatebarcodedialog;
     DBController dbController;
-    Button Exit,Update,Delete;
+    Button Exit,Update,Delete,Enter;
     ArrayList<String>quantity;
-
-
-
-
     EditText edt ;
     EditText edt1 ;
     String Gandola;
@@ -69,6 +65,7 @@ public class DialogActivity extends Activity implements ReaderCallback {
         Exit = (Button)findViewById(R.id.Exit);
         Update = (Button)findViewById(R.id.update);
         Delete = (Button)findViewById(R.id.Delete);
+        Enter = (Button)findViewById(R.id.barcodedialoeenter);
 
         Bundle bundle1 = getIntent().getExtras();
         Gandola = bundle1.getString("Gandolacode");
@@ -102,11 +99,25 @@ public class DialogActivity extends Activity implements ReaderCallback {
                     Toast.makeText(DialogActivity.this, "Please Scan Barcode", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                dbController.removeSingleContact(BarcodeCode);
-                quantity =    dbController.getQuantity(Gandola);
 
-                Intent intent = new Intent(getApplicationContext(), ScanAfterDialog.class);
-                startActivity(intent);
+                if (BarcodeCode != null)
+                {
+                    dbController.removeSingleContact(BarcodeCode);
+
+                }
+                else
+                {
+                    dbController.removeSingleContact(edt.getText().toString());
+
+                }
+                    quantity =    dbController.getQuantity(Gandola);
+                    Intent intent = new Intent(getApplicationContext(), ScanAfterDialog.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
+                    startActivity(intent);
 
 
 
@@ -127,15 +138,32 @@ public class DialogActivity extends Activity implements ReaderCallback {
                         Toast.makeText(DialogActivity.this, "Please Scan Barcode", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    dbController.updateExistinghustatus(BarcodeCode, edt1.getText().toString());
-                    quantity = dbController.getQuantity(Gandola);
+
+                    if (BarcodeCode != null)
+                    {
+                        dbController.updateExistinghustatus(BarcodeCode, edt1.getText().toString());
+                        quantity = dbController.getQuantity(Gandola);
+
+
+                    }
+                    else
+                    {
+                        dbController.updateExistinghustatus(edt.getText().toString(), edt1.getText().toString());
+                        quantity = dbController.getQuantity(Gandola);
+
+
+                    }
+
+
 
                     Intent intent = new Intent(getApplicationContext(), ScanAfterDialog.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                     startActivity(intent);
 
-                    //  totalcount.setText(quantity.get(0));
 
-                    // String newqty = String.valueOf(Integer.parseInt(duplicatebarcodedialog.get(0)) + 1);
                     Toast.makeText(DialogActivity.this, " Quantity Updated", Toast.LENGTH_SHORT).show();
 
 
@@ -151,6 +179,14 @@ public class DialogActivity extends Activity implements ReaderCallback {
             @Override
             public void onClick(View view) {
                 Exitbuttondialog();
+            }
+        });
+
+
+        Enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Databaseoperationenter(edt.getText().toString());
             }
         });
 
@@ -226,6 +262,29 @@ public class DialogActivity extends Activity implements ReaderCallback {
         }
     }
 
+    public void Databaseoperationenter(String barcode)
+    {
+        try {
+
+            duplicatebarcodedialog = dbController.gethualreadyscanned(barcode);
+            if (duplicatebarcodedialog.size() >= 1) {
+
+
+                edt1.setText(duplicatebarcodedialog.get(0));
+            }
+            else {
+                Toast.makeText(this, "No Data Found in Scan File", Toast.LENGTH_LONG).show();
+                edt1.setText("");
+                edt.setText("");
+
+            }
+
+
+
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public void Databaseoperation()
     {
@@ -236,6 +295,12 @@ public class DialogActivity extends Activity implements ReaderCallback {
 
 
                 edt1.setText(duplicatebarcodedialog.get(0));
+            }
+            else {
+                Toast.makeText(this, "No Data Found in Scan File", Toast.LENGTH_LONG).show();
+                edt1.setText("");
+                edt.setText("");
+
             }
 
 
