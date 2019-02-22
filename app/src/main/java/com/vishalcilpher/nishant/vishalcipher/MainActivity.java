@@ -101,11 +101,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 AreaSpinValue = Area.getSelectedItem().toString();
-                if (AreaSpinValue.matches("Sales Area"))
+                if (AreaSpinValue.matches("SALES AREA"))
                 {
                     salesarea = "SA";
                 }
-                else
+                else if (AreaSpinValue.matches("DC AREA"))
                 {
                     salesarea = "DCA";
                 }
@@ -139,10 +139,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 recieved = dbController.getScanData();
-//            gandolamodels = dbhelper.getalldatainvoice();
-//            STORECODE = gandola.get(0).getStoreName();
-//            Gandolacode = gandola.get(0).getGandolano();
-//            Stocktype = gandola.get(0).getStocktype();
+
                 if (recieved.size() == 0) {
 
                     Toast.makeText(MainActivity.this, "No Old Data", Toast.LENGTH_SHORT).show();
@@ -180,7 +177,6 @@ public class MainActivity extends AppCompatActivity
                 if (Scanning.isChecked())
                 {
 
-                    //      dbController.Insertfakegateentry();
                     clearfield();
 
                     Intent intent = new Intent(getApplicationContext(),ScanActivity.class);
@@ -223,7 +219,10 @@ public class MainActivity extends AppCompatActivity
         dbController =  new DBController(this);
         SQLiteDatabase db = dbController.getWritableDatabase();
         String tableName = "retail_physical_scanning";
+        String tableName1 = "retail_store";
+
         db.execSQL("delete from " + tableName);
+        db.execSQL("delete from " + tableName1);
         Log.e("Data","Deleted");
         //  db.execSQL("delete from " + tableName2);
 
